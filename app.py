@@ -86,7 +86,7 @@ if uploaded_file is not None:
             plt.xticks(rotation='vertical')
             st.pyplot(fig)
 
-        
+         
         st.title("Weekly Activity Map")
         user_heatmap = helper.activity_heatmap(selected_user,df)
         fig,ax = plt.subplots()
@@ -138,5 +138,3 @@ if uploaded_file is not None:
             fig , ax = plt.subplots()
             ax.pie(emoji_df[1].head(),labels=emoji_df[0].head(),autopct='%0.2f')
             st.pyplot(fig)
-
-    

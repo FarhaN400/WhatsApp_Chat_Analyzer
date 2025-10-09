@@ -3,7 +3,20 @@ import pandas as pd
 
 
 def processor(data):
-    pattern = '\d{1,2}/\d{1,2}/\d{1,2},\s\d{1,2}:\d{2}\s-\s'
+    pt1 = '\d{1,2}/\d{1,2}/\d{1,2},\s\d{1,2}:\d{2}\s-\s'
+    pt2 = '\d{1,2}/\d{1,2}/\d{2},\s\d{1,2}:\d{2}(?:\s[ap]m)?\s-\s'
+
+    def find_pt(data):
+        p1 = re.findall(pt1,data)
+        p2 = re.findall(pt2,data)
+
+        if len(p1) != 0:
+            return pt1
+        else:
+            return pt2
+        
+    pattern = find_pt(data)
+    
     messages = re.split(pattern, data)[1:]
     dates = re.findall(pattern, data)
 
